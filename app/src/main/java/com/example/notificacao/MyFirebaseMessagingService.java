@@ -2,7 +2,9 @@ package com.example.notificacao;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -17,9 +19,6 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
-
-    private TextView tvTitulo, tvMensagem;
-
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage notificacao) {
@@ -39,13 +38,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //Configurações iniciais para criar uma notificação
         String canal = getString(R.string.default_notification_channel_id);
         Uri uriSom = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Intent intent = new Intent(this, ConteudoDaNotificacao.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_ONE_SHOT);
 
         //Cria a notificação
         NotificationCompat.Builder notificacao = new NotificationCompat.Builder(this, canal)
                 .setContentTitle(titulo)
                 .setContentText(conteudo)
                 .setSmallIcon(R.drawable.ic_camera_black_24dp)
-                .setSound(uriSom);
+                .setSound(uriSom)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent);
 
         //Chama o gerenciador de notificação, para usar um serviço de sistema
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
