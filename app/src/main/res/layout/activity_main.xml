@@ -7,10 +7,10 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tvTitulo"
+        android:id="@+id/tvPesquisarObjeto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BEIJOS!!!"
+        android:text="Pesquisar objeto"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/tvPesquisarObjeto"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
